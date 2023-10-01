@@ -30,7 +30,7 @@ public class tloc {
             e.printStackTrace();
         }
 
-        System.out.println(countLine);
+        System.out.print(countLine);
     }
     private static boolean isValidLine(String line)
     {

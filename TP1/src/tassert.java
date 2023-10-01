@@ -34,7 +34,7 @@ public class tassert {
             e.printStackTrace();
         }
 
-        System.out.println(insCount);
+        System.out.print(insCount);
     }
     public static void oneLine(String line)
     {   String left = "";
