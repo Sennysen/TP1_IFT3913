@@ -1,11 +1,13 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.File;
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-
-
-        testTropComp();// tester la class trop comp
+        testTropComp();    // tester la class trop comp
+        //testTLOCMethod();  // tester la class tloc
     }
 
     public static void testTropComp() {
@@ -21,7 +23,7 @@ public class Main {
         try {
             tropcomp.main(testArgs);
             System.out.println("tropcomp test completed. Check the output file for results.");
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error encountered while testing tropcomp: " + e.getMessage());
             e.printStackTrace();
         }
