@@ -1,96 +1,63 @@
-import org.junit.jupiter.api.Test;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class tloc {
-    static boolean commentOpen = false;
-    static boolean stringOpen = false;
-    int countLine = 0;
 
-    @Test
-    void main(String path) {
+    /**
+     * Computes the Total Lines of Code (TLOC) for the given file path.
+     *
+     * @param path The file path.
+     * @return The TLOC.
+     */
+    public int computeTLOC(String path) {
+        int countLine = 0;
+        boolean commentOpen = false;
+
         try {
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
+
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine().trim();
-
-                if(isValidLine(data))
-                {
-                    countLine ++;
-                    //System.out.println(data);
+                if (isValidLine(data, commentOpen)) {
+                    countLine++;
                 }
 
+                // Update the commentOpen status
+                if (data.contains("/*") && !data.contains("*/")) {
+                    commentOpen = true;
+                } else if (data.contains("*/")) {
+                    commentOpen = false;
+                }
             }
+
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
 
-        System.out.print(countLine);
+        return countLine;
     }
-    private static boolean isValidLine(String line)
-    {
-        if (line.compareTo("") != 0 || line != null)
-        {
 
-            if(line.length() > 1)
-            {
-                /*
-                int quoteOpen =  line.length() - line.replace("\"", "").length();
-                int
-                if(quoteOpen % 2 != 0 && !commentOpen)
-                {
-                    if(stringOpen)
-                    {
-                        stringOpen = false;
-                    }
-                    else
-                    {
-                        stringOpen = true;
-                    }
-                }*/
-                String startWith = line.substring(0, 2);
-                if(startWith.compareTo("/*") != 0 && startWith.compareTo("//") != 0)
-                {
-                    if(!commentOpen)
-                    {
-                        if(line.contains("/*"))
-                        {
-                            commentOpen = true;
-                        }
-                        return true;
-
-                    }
-                    if (commentOpen && line.contains("*/"))
-                    {
-                        if(line.length() == line.indexOf("*/") + 2)
-                        {
-                            commentOpen = false;
-                        }
-                        else {
-                            return isValidLine(line.substring(line.indexOf("*/") + 2));
-                        }
-                    }
-                }else {
-                    if(startWith.compareTo("/*") == 0)
-                    {
-                        commentOpen = true;
-                    }
-                    return false;
-                }
-            }else if (line.length() == 1 && !commentOpen)
-            {
-                return true;
-            }
-
+    private boolean isValidLine(String line, boolean commentOpen) {
+        if (line == null || line.isEmpty()) {
+            return false;
         }
 
-        return false;
+        if (line.startsWith("//")) { // Single line comment
+            return false;
+        }
+
+        if (line.contains("/*") && !line.contains("*/")) {
+            return true; // Count the starting line of block comments
+        }
+
+        if (!commentOpen) {
+            return true;
+        }
+
+        return false; // If it's a continued comment line, it won't be valid
     }
-
-
 }
