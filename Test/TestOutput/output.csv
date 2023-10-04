@@ -1,6 +1,5 @@
-Test/TestInput/Title/TextTitleTest.java,org.jfree.chart.title,,158.0,25.0,6.32
-Test/TestInput/Title/DateTitleTest.java,org.jfree.chart.title,,120.0,15.0,8.0
-Test/TestInput/Title/ImageTitleTest.java,org.jfree.chart.title,,129.0,16.0,8.0625
-Test/TestInput/Title/CompositeTitleTest.java,org.jfree.chart.title,,158.0,19.0,8.31578947368421
-Test/TestInput/Title/TitleTest.java,org.jfree.chart.title,subclass,96.0,11.0,8.727272727272727
-Test/TestInput/Title/ShortTextTitleTest.java,org.jfree.chart.title,,100.0,9.0,11.11111111111111
+./Test/TestInput/Title/TextTitleTest.java    org.jfree.chart.title    TextTitleTest                3.0
+./Test/TestInput/Title/CompositeTitleTest.java    org.jfree.chart.title    CompositeTitleTest                1.0
+./Test/TestInput/Title/ShortTextTitleTest.java    org.jfree.chart.title    ShortTextTitleTest                0.0
+./Test/TestInput/Title/DateTitleTest.java    org.jfree.chart.title    DateTitleTest                0.0
+./Test/TestInput/Title/TitleTest.java    org.jfree.chart.title    TitleTest                0.0

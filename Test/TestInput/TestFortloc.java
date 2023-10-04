@@ -7,15 +7,20 @@ public class TestFileForTLOC {
         System.out.println("This is a line of code");
 
         String a = """
-                /*\s
+                /*
                         This is a multi-line comment
                         spanning multiple lines
                         and should not be counted\s
                         */
                 
                 
-                """
-
+                """;
+        /**
+         * Computes the Total Lines of Code (TLOC) for the given file path.
+         *
+         * @param path The file path.
+         * @return The TLOC.
+         */
         System.out.println("Another line of code");
     }
 }

@@ -13,23 +13,37 @@ public class tloc {
     public int computeTLOC(String path) {
         int countLine = 0;
         boolean commentOpen = false;
-
+        boolean stringOpen = false;
         try {
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
 
             while (myReader.hasNextLine()) {
-                String data = myReader.nextLine().trim();
-                if (isValidLine(data, commentOpen)) {
-                    countLine++;
+                String data = myReader.nextLine().replaceAll("\\s","");
+                // est une ligne de code avec debut et hors commentaire
+                if(data.contains("=\"") && !data.contains("\";") && !commentOpen ){
+                    stringOpen = true;
+                }else if (data.contains("\";") && !commentOpen){
+                    stringOpen = false;
                 }
-
                 // Update the commentOpen status
                 if (data.contains("/*") && !data.contains("*/")) {
                     commentOpen = true;
-                } else if (data.contains("*/")) {
+                }
+
+                if (isValidLine(data,commentOpen,stringOpen)) {
+                    countLine++;
+
+                    //System.out.println(data);
+                    //System.out.println("commentOpen"+": " + commentOpen);
+                    //System.out.println("stringOpen"+": " + stringOpen);
+                    //System.out.println("line number now is"+": " + countLine);
+                }
+                if (data.contains("*/")) {
                     commentOpen = false;
                 }
+
+
             }
 
             myReader.close();
@@ -41,23 +55,29 @@ public class tloc {
         return countLine;
     }
 
-    private boolean isValidLine(String line, boolean commentOpen) {
-        if (line == null || line.isEmpty()) {
+    private boolean isValidLine(String line, boolean commentOpen, boolean stringOpen) {
+        if (line == null ) {
+            return false;
+        }
+        if(line.isEmpty() && stringOpen){
+            return true;
+        }
+        if(line.isEmpty() && !stringOpen){
             return false;
         }
 
-        if (line.startsWith("//")) { // Single line comment
+        if (line.startsWith("//")) { // une ligne de comment
             return false;
         }
 
-        if (line.contains("/*") && !line.contains("*/")) {
-            return true; // Count the starting line of block comments
+        if (stringOpen) {
+            return true; // est dans une string donc une ligne valide
         }
 
-        if (!commentOpen) {
+        if (!commentOpen ) {
             return true;
         }
 
-        return false; // If it's a continued comment line, it won't be valid
+        return false;
     }
 }
