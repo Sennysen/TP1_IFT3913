@@ -1,0 +1,5 @@
+./Test/TestInput/Title/TextTitleTest.java    org.jfree.chart.title    TextTitleTest                3.0
+./Test/TestInput/Title/CompositeTitleTest.java    org.jfree.chart.title    CompositeTitleTest                1.0
+./Test/TestInput/Title/ShortTextTitleTest.java    org.jfree.chart.title    ShortTextTitleTest                0.0
+./Test/TestInput/Title/DateTitleTest.java    org.jfree.chart.title    DateTitleTest                0.0
+./Test/TestInput/Title/TitleTest.java    org.jfree.chart.title    TitleTest                0.0

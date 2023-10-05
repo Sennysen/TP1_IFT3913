@@ -8,8 +8,8 @@ public class tassert {
     static boolean commentOn = false;
     static boolean quoteOn = false;
 
-    @Test
-    void main(String path) {
+
+    public int computeAssert(String path) {
         try {
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
@@ -34,7 +34,8 @@ public class tassert {
             e.printStackTrace();
         }
 
-        System.out.print(insCount);
+       // System.out.print(insCount);
+        return insCount;
     }
     public static void oneLine(String line)
     {   String left = "";
