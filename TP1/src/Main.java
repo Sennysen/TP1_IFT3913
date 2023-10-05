@@ -7,9 +7,10 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
+       
         //testTLOCMethod();  // tester la class tloc
         //testTLSMethod();
-        testTropComp();
+        //testTropComp();
     }
     public static void testTLSMethod(){
         String[] testArgs = {
