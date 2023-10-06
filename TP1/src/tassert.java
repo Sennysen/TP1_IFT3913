@@ -66,7 +66,7 @@ public class tassert {
             {
                 quoteOn = true;
                 right = "";
-            }else if(!right.contains("*/") && right.substring(0, 2).compareTo("/*") == 0)
+            }else if(!right.contains("*/") && right.length() >= 2 && "/*".equals(right.substring(0, 2)))
             {
                 commentOn = true;
                 right = "";

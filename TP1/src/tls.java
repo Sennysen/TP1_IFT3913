@@ -14,7 +14,7 @@ public class tls {
     String title = "";
     List<scriptDetail> scriptDetailList = new ArrayList<>();
     @Test
-    public List<scriptDetail> getTLS(String dirPath, String outputPath) {
+    public List<scriptDetail> getTLS(String dirPath, String outputPath, Boolean Opath) {
         boolean isTest = false;
 
         File dir = new File(dirPath);  // Convert the directory path string to a File object
@@ -24,7 +24,7 @@ public class tls {
             if (children != null) {  // Ensure children is not null before accessing its length
                 for (int i = 0; i < children.length; i++) {
                     String childPath = new File(dir, children[i]).getAbsolutePath();
-                    List<scriptDetail> childDetails = getTLS(childPath,outputPath);  // Recursive call with the child's absolute path
+                    List<scriptDetail> childDetails = getTLS(childPath,outputPath, Opath);  // Recursive call with the child's absolute path
                     scriptDetailList.addAll(childDetails);
                 }
             }
@@ -98,13 +98,13 @@ public class tls {
                 System.out.println("\n");
                 System.out.print(fPath + "    " + packageName + "    " + className + "    " + tloc + "      " + tassert + "      " + fileAlpha.getTCMP());
                 System.out.println("\n");
-
-                try (PrintStream outp = new PrintStream(new FileOutputStream(outputPath,true))) { // 'true' pour append
-                    outp.println(fileDetail);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                if(Opath) {
+                    try (PrintStream outp = new PrintStream(new FileOutputStream(outputPath, true))) { // 'true' pour append
+                        outp.println(fileDetail);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
-
             }
         }
 

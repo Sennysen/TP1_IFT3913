@@ -8,8 +8,8 @@ import java.util.List;
 
 public class tropcomp {
 
-    public void writeTropComp(String dirPath, String outputPath, String seuil){
-        List <scriptDetail> allScript = new tls().getTLS(dirPath,outputPath);
+    public void writeTropComp(String dirPath, String outputPath, String seuil, Boolean outP){
+        List <scriptDetail> allScript = new tls().getTLS(dirPath,outputPath, outP);
         for(scriptDetail a : allScript){
             if(a.tcmpValue < Double.parseDouble(seuil) && a.tlocValue < Double.parseDouble(seuil)){
                 try (PrintStream outp = new PrintStream(new FileOutputStream(outputPath,true))) { // 'true' pour append
