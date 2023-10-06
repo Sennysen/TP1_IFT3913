@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/tassertProgram/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tassertProgram/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlocProgram/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlocProgram/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlsProgram/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tlsProgram/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tropcompProgram/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tropcompProgram/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
