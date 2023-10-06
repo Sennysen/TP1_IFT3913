@@ -4,12 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class tassert {
-    static int insCount = 0;
+
     static boolean commentOn = false;
     static boolean quoteOn = false;
 
 
     public int computeAssert(String path) {
+        int insCount = 0;
         try {
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
@@ -20,11 +21,11 @@ public class tassert {
                     if(data.contains("*/") || data.contains("\""))
                     {
                         //System.out.println("processe: " + data);
-                        oneLine(data);
+                        insCount+=   oneLine(data);
                     }
                 }else {
                     //System.out.println("processe: " + data);
-                    oneLine(data);
+                    insCount+= oneLine(data);
                     //System.out.println(insCount);
                 }
             }
@@ -37,12 +38,16 @@ public class tassert {
        // System.out.print(insCount);
         return insCount;
     }
-    public static void oneLine(String line)
-    {   String left = "";
+
+    public int oneLine(String line)
+    {
+        int insCount = 0;
+        //System.out.println(line);
+        String left = "";
         String right = "";
         if(line.compareTo("") == 0 || line == null)
         {
-            return;
+            return insCount;
         }
 
         if(line.contains("/*") || line.contains("\"") )
@@ -79,32 +84,34 @@ public class tassert {
             }
 
 
-            oneLine(left);
-            oneLine(right);
-            return;
+
+
+            insCount +=oneLine(left);
+            insCount +=oneLine(right);
+            return insCount;
         }
 
         if(line.contains("//"))
         {
             left = line.substring(0, line.indexOf("//"));
-            oneLine(left);
-            return;
+            insCount += oneLine(left);
+            return insCount ;
         }
 
         if(line.contains("*/"))
         {
             right = line.substring(line.indexOf("*/") + 2);
-            oneLine(right);
+            insCount += oneLine(right);
             commentOn = false;
-            return;
+            return insCount;
         }
 
         if(line.contains("\""))
         {
             right = line.substring(line.indexOf("\"") + 1);
-            oneLine(right);
+            insCount += oneLine(right);
             quoteOn = false;
-            return;
+            return insCount ;
         }
 
 
@@ -112,9 +119,9 @@ public class tassert {
         {
             left = line.substring(0, line.indexOf(";"));
             right = line.substring(line.indexOf(";") + 1);
-            oneLine(left);
-            oneLine(right);
-            return;
+            insCount += oneLine(left);
+            insCount += oneLine(right);
+            return insCount;
         }
 
         //if all special chars are not presents, now one "line" could contain at most one assertion
@@ -125,7 +132,11 @@ public class tassert {
         {
             insCount++;
         }
-        return;
+        insCount += oneLine(left);
+        insCount += oneLine(right);
+
+        //System.out.println(line + " le nombre de insCount is " + insCount);
+        return insCount;
     }
 
 

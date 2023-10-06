@@ -7,33 +7,36 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-       String testCase = args[0];
-       switch(testCase){
-           case "tloc":
-               callTLOCMethod(args);
-               break;
-           case "tassert":
-               callTASSERTMethod(args);
-               break;
-           case "tls":
-               callTLSMethod(args);
-               break;
-           case "tropcomp":
-               callTropComp(args);
-               break;
-           default:
-               System.out.println("Vous n'aviez pas rentrer un nom de fonction valide, " +
-                       "veuillez choisir tloc , tassert , tls ou tropcomp");
-               // Test/jfreechart-master
 
-       };
+        String testCase = args[0];
+        switch(testCase){
+            case "tloc":
+                callTLOCMethod(args);
+                break;
+            case "tassert":
+                callTASSERTMethod(args);
+                break;
+            case "tls":
+                callTLSMethod(args);
+                break;
+            case "tropcomp":
+                callTropComp(args);
+                break;
+            default:
+                System.out.println("Vous n'aviez pas rentrer un nom de fonction valide, " +
+                        "veuillez choisir tloc , tassert , tls ou tropcomp");
+                // Test/jfreechart-master
+
+        };
+
     }
     public static void callTASSERTMethod(String[] args){
         String[] testArgs = {
                 "Test/TestInput/Title"
         };
         tassert tA = new tassert();
-        tA.computeAssert(args[1]);
+
+        System.out.println("le nombre tassert est " + tA.computeAssert(args[1]));
     }
 
     public static void callTLSMethod(String[] args){
@@ -49,12 +52,12 @@ public class Main {
             String outputpath = args[1];
             String path = args[2];
 
-            tlsCounter.getTLS(path,outputpath,true);
+            //tlsCounter.getTLS(path,outputpath,true);
         }
         else{
 
             String path = args[2];
-            tlsCounter.getTLS(path,null,false);
+            //tlsCounter.getTLS(path,null,false);
         }
     }
 
@@ -71,6 +74,7 @@ public class Main {
     public static void callTropComp(String[] args) {
         // Simulate command line
         // java main -o /Users/yuningsun/Documents/TestOutput/output.csv Test/TestInput 1
+
         String[] testArgs = {
                 "-o",
                 "Test/TestOutput/output.csv", // output
@@ -86,7 +90,10 @@ public class Main {
                 String outputPath = args[2];
                 String inputPath = args[3];
                 String seuil = args[4];
-                a.writeTropComp(inputPath,outputPath,seuil, true);
+                int fileNb = new tls().getPercentileNbFile(inputPath);
+                //System.out.println(a);
+                a.writeTropComp(inputPath,outputPath,seuil,true);
+
 
             }else{
 
