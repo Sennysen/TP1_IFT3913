@@ -309,9 +309,6 @@ public class tls {
                    // System.out.println("Le fichier qu'on a un fichier "+fileAlpha.toString());
                 }
 
-                // After processing all files:
-                //List<scriptDetail> topDetails = new ArrayList<>(queue);
-                //Collections.reverse(topDetails); // reverse to get the list in descending order of tlocV
 
             }
 
